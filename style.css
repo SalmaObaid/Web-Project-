@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  direction: rtl;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+header {
+  background-color: #ff8000;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+main {
+  padding: 1rem;
+}
+
+.game-section {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.game-section h2 {
+  background-color: #5baa2d;
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.buttons button {
+  background-color: #ffce00;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.leaderboard {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.leaderboard h2 {
+  color: #ff8000;
+}
+
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 80%;
+  text-align: center;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer-content div {
+  flex: 1;
+  min-width: 200px;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer input {
+  padding: 0.5rem;
+  width: calc(100% - 110px);
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+footer button {
+  padding: 0.5rem;
+  background-color: #ff8000;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
