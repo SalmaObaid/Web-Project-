@@ -1,31 +1,44 @@
 // get homepage
-exports.homepage = async (req,res)=> {
+
+const WordsSet = require('../models/WordsSet.js');
+
+exports.homepage = async (req, res) => {
     const locals = {
         title: 'تخمينة',
         description: 'خمن الكلمات الصحيحة'
     }
-    res.render('index',{
+
+    const words = await WordsSet.find();
+
+    res.render('index', {
         locals,
-        layout:'../Views/layouts/front-page'
+        user: req.user,
+        words,
+        layout: '../Views/layouts/front-page'
     });
 }
 
 // get about
 
-exports.login = async (req,res)=> {
+exports.login = async (req, res) => {
     const locals = {
         title: 'Login Page',
     }
-    res.render('login',locals);
-   
+    res.render('login', {
+        locals,
+        user: req.user,
+    });
+
 }
 
-exports.signup = async (req,res)=> {
+exports.signup = async (req, res) => {
     const locals = {
         title: 'SignUp Page',
     }
-    res.render('signup',{locals,
-    layout:'../Views/layouts/main'
+    res.render('signup', {
+        locals,
+        user: req.user,
+        layout: '../Views/layouts/main'
     });
-   
+
 }

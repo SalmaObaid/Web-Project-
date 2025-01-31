@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const WordsSet = require('../models/WordsSet.js');
 
 // get dashboard 
 exports.dashboard = async (req, res) => {
@@ -9,12 +9,17 @@ exports.dashboard = async (req, res) => {
 
     try {
 
+
+        const words = await WordsSet.find();
+
         res.render('dashboard/index', {
+            user: req.user,
+            words: words,
             userName: req.user.displayName, //Get user Name
             layout: '../Views/layouts/dashboard',
         });
 
     } catch (error) {
-        console.log("Error while directing to dashboard "+error);
+        console.log("Error while directing to dashboard " + error);
     }
 };

@@ -1,15 +1,22 @@
 <div class="container-fluid justify-content-between ">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
-      <a href="/" class="d-flex align-items-center col-md-1 mb-md-0">
-        <img src="img/Orange-LOGO.png" alt="شعار تخمينة" class="container-fluid imageHeader">
-      </a>
-      <ul class="nav mb-3 justify-content-center ">
-        <li><a href="/" class="nav-link px-2 link-secondary">الصفحة الرئيسية</a></li>
-        <li><a href="#" class="nav-link px-2 link-secondary ">عن تخمينة</a></li>
-      </ul>
-  
-      <div class="col-md-1.9 text-end">
+  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+    <a href="/" class="d-flex align-items-center col-md-1 mb-md-0">
+      <img src="img/Orange-LOGO.png" alt="شعار تخمينة" class="container-fluid imageHeader">
+    </a>
+    <ul class="nav mb-3 justify-content-center ">
+      <li><a href="/#S1" class="nav-link px-2 link-secondary">الصفحة الرئيسية</a></li>
+      <li><a href="/#S2" class="nav-link px-2 link-secondary ">عن تخمينة</a></li>
+    </ul>
+
+    <div class="col-md-1.9 text-end">
+
+      <% if (user) { %>
+        <a class="mb-4 btn btn-outline-primary">أهلا <%= user.displayName %></a>
         <a href="/logout " type="button" class="mb-4 btn btn-outline-primary">تسجيل خروج</a>
-      </div>
-    </header>
-  </div>
+        <% } else { %>
+          <a href="signup" type="button" class="btn btn-outline-primary me-1">حساب جديد</a>
+          <a href="/login" type="button" class="btn btn-primary">تسجيل دخول</a>
+          <% } %>
+    </div>
+  </header>
+</div>

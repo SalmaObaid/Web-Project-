@@ -9,62 +9,61 @@ const bcrypt = require('bcrypt');
 
 
 
-router.post('/auth/login',async (req,res) => {
-    const {email, password,rememberMe} =req.body;
+router.post('/auth/login', async (req, res) => {
+    const { email, password, rememberMe } = req.body;
 
     try {
-        const user = await User.findOne({email});
-        if (!user){ // user not found
+        const user = await User.findOne({ email });
+        if (!user) { // user not found
             return res.redirect('/login?error=لا يوجد مستخدم بهذا البريد الإلكتروني');
         };
 
-        const matchs = await bcrypt.compare(password,user.password);
+        const matchs = await bcrypt.compare(password, user.password);
         if (!matchs) { // password != user password
-             return res.redirect('/login?error=كلمة المرور غير صحيحة');
+            return res.redirect('/login?error=كلمة المرور غير صحيحة');
         };
 
-
         return res.redirect('/dashboard')
-   
+
     } catch (error) {
-    console.log("error at login" + error);
-    return res.status(500);
-        
+        console.log("error at login" + error);
+        return res.status(500);
+
     }
 
 
 });
 
-router.post('/auth/signup',async (req,res) =>{
-    const {email, password,displayName} =req.body;
+router.post('/auth/signup', async (req, res) => {
+    const { email, password, displayName } = req.body;
     try {
-        let user = await User.findOne({email});
+        let user = await User.findOne({ email });
 
         if (user) { //found user with same 
             return res.redirect('/signup?error=هذا البريد مأخوذ بالفعل');
         }
 
-        const hashedPassword = await bcrypt.hash(password,5);
+        const hashedPassword = await bcrypt.hash(password, 5);
 
-        user= await new User({
+        user = await new User({
             email,
-            password : hashedPassword,
+            password: hashedPassword,
             displayName
         });
         await user.save();
 
-        req.login(user, (err)=>{
+        req.login(user, (err) => {
             if (err) {
-                console.log("error while userlogin: "+err);
+                console.log("error while userlogin: " + err);
             };
-           return res.redirect('/dashboard')
+            return res.redirect('/dashboard')
         });
 
-        
+
     } catch (error) {
 
-        console.log("error while creating User acount"+error)
-        
+        console.log("error while creating User acount" + error)
+
     }
 
 });
@@ -80,8 +79,8 @@ passport.use(new GoogleStrategy({
 
     async function (accessToken, refreshToken, profile, done) {
         const newUser = {
-            googleId: profile.id, 
-            email: profile.emails[0].value, 
+            googleId: profile.id,
+            email: profile.emails[0].value,
             displayName: profile.displayName,
 
         }
@@ -104,23 +103,23 @@ passport.use(new GoogleStrategy({
 router.get('/auth/google',
     passport.authenticate('google', { scope: ['email', 'profile'] }));
 
-    router.get('/google/callback',
+router.get('/google/callback',
     passport.authenticate('google', {
         failureRedirect: '/login',  //go to home page / or login page 
         successRedirect: '/dashboard', //login succuess => home page 
-        
+
     }),
 );
 
 
 //destroy user session 
-router.get('/logout',(req,res)=>{
-    req.session.destroy(error =>{
+router.get('/logout', (req, res) => {
+    req.session.destroy(error => {
         if (error) {
             console.log(error);
             res.send('Erorr loggin out');
         } else {
-            res.redirect('/'); 
+            res.redirect('/');
         }
     })
 });
