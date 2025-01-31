@@ -8,5 +8,6 @@
  router.get('/play-game', dashboardController.play_game); //to redirect user must be logged in
  router.get('/board', dashboardController.board); //to redirect user must be logged in
  router.post('/submit-score', dashboardController.submit_score); //to redirect user must be logged in
+ router.get('/get-words', dashboardController.get_words); //to redirect user must be logged in
 
   module.exports=router; 

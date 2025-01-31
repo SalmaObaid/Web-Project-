@@ -31,21 +31,11 @@ exports.play_game = async (req, res) => {
         title: 'Dashboard',
     };
 
-
     try {
 
-        const words = await WordsSet.find();
         const level = req.query.level;
-        const wordsSet = await WordsSet.findOne({ level: level });
-
-        if (!wordsSet) {
-            return res.status(404).send("Category not found");
-        }
-        const words_string = wordsSet.words.join(', ');
         res.render('dashboard/play-game', {
             user: req.user,
-            words: words,
-            words_string: words_string,
             game_level: level,
             wordleWord: req.session.wordleWord,
             userName: req.user.displayName, //Get user Name
@@ -63,9 +53,7 @@ exports.board = async (req, res) => {
         title: 'Board',
     };
 
-
     try {
-
         const scores = await Leaderboard.find().sort({ score: -1 }); // Newest scores first
 
         res.render('dashboard/board', {
@@ -77,6 +65,36 @@ exports.board = async (req, res) => {
 
     } catch (error) {
         console.log("Error while directing to dashboard " + error);
+    }
+};
+
+exports.get_words = async (req, res) => {
+    try {
+
+        const words = await WordsSet.find();
+        const level = req.query.level;
+        const wordsSet = await WordsSet.findOne({ level: level });
+
+
+        beginner = (await WordsSet.findOne({ level: "beginner" })).words;
+        intermediate = (await WordsSet.findOne({ level: "intermediate" })).words;
+        advanced = (await WordsSet.findOne({ level: "advanced" })).words;
+        custom = (await WordsSet.findOne({ level: "custom" })).words;
+
+        const words_string = wordsSet.words.join(', ');
+
+        
+        res.status(200).json({ 
+            words: words,
+            words_string: words_string,
+            beginner: beginner,
+            intermediate: intermediate,
+            advanced: advanced,
+            custom: custom
+         });
+
+    } catch (e) {
+
     }
 };
 

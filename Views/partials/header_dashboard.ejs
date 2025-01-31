@@ -6,13 +6,15 @@
     <ul class="nav mb-3 justify-content-center ">
       <li><a href="/#S1" class="nav-link px-2 link-secondary">الصفحة الرئيسية</a></li>
       <li><a href="/#S2" class="nav-link px-2 link-secondary ">عن تخمينة</a></li>
+      <% if (user) { %>
+        <li><a href="/board " type="button" class="nav-link px-2 link-secondary ">لوحة المتصدرين</a></li>
+        <% } %>
     </ul>
 
     <div class="col-md-1.9 text-end">
 
       <% if (user) { %>
         <a class="mb-4 btn btn-outline-primary">أهلا <%= user.displayName %></a>
-        <a href="/board " type="button" class="mb-4 btn btn-outline-primary">لوحة المتصدرين</a>
         <a href="/logout " type="button" class="mb-4 btn btn-outline-primary">تسجيل خروج</a>
         <% } else { %>
           <a href="signup" type="button" class="btn btn-outline-primary me-1">حساب جديد</a>
