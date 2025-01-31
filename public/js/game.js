@@ -338,7 +338,7 @@ function gameOver() {
 function gameStart(words_string = "") {
 	setGlobal();
 	container.innerHTML = '';
-	
+
 	if (words_string.length > 0) {
 		var wordType = words_string.split(', ').map(item => item.trim());
 	} else {
@@ -670,9 +670,10 @@ function checkAnswer(wordRow, answer) {
 			localStorage.setItem('streak' + difficulty + level, currentStreak);
 		}
 
-		let notification = 'متتاز لقد فزت، نتيجتك هي:  '+userScore;
+		let notification = 'متتاز لقد فزت، نتيجتك هي:  ' + userScore;
 		document.getElementById('notification').innerText = notification;
 		gameOver();
+		submitScore(username, userScore);
 
 		// setTimeout(function () {
 		// 	openModal('endScore', notification);
@@ -681,8 +682,9 @@ function checkAnswer(wordRow, answer) {
 	else if (currentRow == 5) {
 		userScore = userScore - 10;
 		currentStreak = 0;
-		let notification = 'لقد خسرت، الكلمة الصحيحة هي  ' + chosenWord + ', وحصلت على '+userScore;
+		let notification = 'لقد خسرت، الكلمة الصحيحة هي  ' + chosenWord + ', وحصلت على ' + userScore;
 		document.getElementById('notification').innerText = notification;
+		submitScore(username, userScore);
 		gameOver();
 
 		// setTimeout(function () {
@@ -742,3 +744,21 @@ function addLetter(rowBlockEl, letter) {
 		nextRowBlock++;
 	}
 }
+
+
+async function submitScore(username, score) {
+	try {
+		const response = await fetch('/submit-score', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ username, score }),
+		});
+
+		const data = await response.json();
+		console.log('Response:', data);
+	} catch (error) {
+		console.error('Error submitting score:', error);
+	}
+};

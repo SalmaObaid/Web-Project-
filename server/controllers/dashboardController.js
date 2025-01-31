@@ -1,4 +1,5 @@
 const WordsSet = require('../models/WordsSet.js');
+const Leaderboard = require('../models/LeaderBoard.js');
 
 // get dashboard 
 exports.dashboard = async (req, res) => {
@@ -53,5 +54,53 @@ exports.play_game = async (req, res) => {
 
     } catch (error) {
         console.log("Error while directing to dashboard " + error);
+    }
+};
+
+exports.board = async (req, res) => {
+
+    const locals = {
+        title: 'Board',
+    };
+
+
+    try {
+
+        const scores = await Leaderboard.find().sort({ score: -1 }); // Newest scores first
+
+        res.render('dashboard/board', {
+            user: req.user,
+            scores: scores,
+            userName: req.user.displayName, //Get user Name
+            layout: '../Views/layouts/dashboard',
+        });
+
+    } catch (error) {
+        console.log("Error while directing to dashboard " + error);
+    }
+};
+
+exports.submit_score = async (req, res) => {
+    const { username, score } = req.body;
+
+    if (!username || score === undefined) {
+        return res.status(400).json({ message: 'Username and score are required' });
+    }
+
+    try {
+        // Check if the user already has the same score
+        const existingEntry = await Leaderboard.findOne({ username, score });
+
+        if (!existingEntry) {
+            // Insert a new entry with the current date
+            const newEntry = new Leaderboard({ username, score });
+            await newEntry.save();
+            return res.status(201).json({ message: 'Score saved successfully', newEntry });
+        }
+
+        res.status(200).json({ message: 'Score already exists', existingEntry });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error', error });
     }
 };
