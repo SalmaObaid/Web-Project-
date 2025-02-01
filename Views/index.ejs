@@ -9,7 +9,12 @@
                خمن الحروف الصحيحة حتى تصل للكلمة المطلوبة </h1>
             <p class="fs-4 mb-4 secondary-text"> تعريب للعبة Wordle الشهيرة</p>
 
-            <a href="/auth/google " class="btn btn-primary btn-lg">ابدأ اللعب !</a>
+            <% if (user) { %>
+               <a href="/dashboard " class="btn btn-primary btn-lg">ابدأ اللعب !</a>
+
+               <% } else { %>
+                  <a href="/auth/google " class="btn btn-primary btn-lg">ابدأ اللعب !</a>
+                  <% } %>
          </div>
          <!-- <div class = "imgeL col-md-12 col-lg-6 text-center">
          <a  href='https://ar.pngtree.com/freepng/hand-lettering-arabic-alphabet-colorfull-for-kids_6611840.html'></a>
