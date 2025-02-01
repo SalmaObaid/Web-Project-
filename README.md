@@ -1,7 +1,7 @@
-# Wordle Game
+# Takhmenah Game
 
 ## Overview
-This project is a web-based Wordle game built using Node.js, Express, EJS, and MongoDB. The goal is to allow users to guess a five-letter word within a limited number of attempts. The game provides feedback on letter positions to help users make better guesses.
+This project is a web-based Takhmenah game built using Node.js, Express, EJS, and MongoDB. The goal is to allow users to guess a five-letter word within a limited number of attempts. The game provides feedback on letter positions to help users make better guesses.
 
 ## Flowchart
 1. **Start**
@@ -47,7 +47,7 @@ This project is a web-based Wordle game built using Node.js, Express, EJS, and M
    ```
 3. Create a `.env` file and configure environment variables:
    ```sh
-   MONGO_URI=mongodb://localhost:27017/wordle
+   MONGO_URI=mongodb://localhost:27017/db
    PORT=3000
    MONGODB_URI=mongodb+srv://username:password@cluster0.aukkz.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0
    GOOGLE_CLIENT_ID=
