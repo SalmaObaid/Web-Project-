@@ -1,7 +1,7 @@
 # Takhmenah Game
 
 ## Overview
-This project is a web-based, interactive Takhmenah game built using Node.js, Express, EJS, and MongoDB. The goal is to allow users to guess a five-letter word within a limited number of attempts. The game provides feedback on the positions of the letters to help users make better guesses.
+This project is a web-based, interactive game called Takhmenah, built using Node.js, Express, EJS, and MongoDB. The goal is to allow users to guess a five-letter word within a limited number of attempts. The game provides feedback on the positions of the letters to help users make better guesses.
 
 ## Flowchart
 1. **Start**
