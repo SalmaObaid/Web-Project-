@@ -23,7 +23,13 @@ router.post('/auth/login', async (req, res) => {
             return res.redirect('/login?error=كلمة المرور غير صحيحة');
         };
 
-        return res.redirect('/dashboard')
+        req.login(user, (err) => {
+            if (err) {
+                console.log("error while userlogin: " + err);
+            };
+            return res.redirect('/dashboard')
+        });
+
 
     } catch (error) {
         console.log("error at login" + error);
