@@ -30,7 +30,7 @@
             <script>
                 level = ("<%= game_level %>").toLowerCase().replace(/ /g, "");
                 game.username = "<%= userName %>";
-                game.startGame();
+                game.startGame(level);
             </script>
             <%- include("../partials/footer.ejs") %>
 

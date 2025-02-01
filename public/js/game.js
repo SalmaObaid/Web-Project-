@@ -22,8 +22,9 @@ class WordleGame {
         this.chosenWord = '';
     }
 
-    async startGame() {
+    async startGame(level) {
         this.gameOn = true;
+        this.level = level;
         document.getElementById('difficultySelectBtn').innerText = this.level;
 
         let data = await this.getWords();

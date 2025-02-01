@@ -34,6 +34,7 @@ exports.play_game = async (req, res) => {
     try {
 
         const level = req.query.level;
+        console.log(level);
         res.render('dashboard/play-game', {
             user: req.user,
             game_level: level,
