@@ -1,4 +1,4 @@
-class WordleGame {
+class WordleGame { 
     constructor() {
         this.currentRow = 0;
         this.nextRowBlock = 0;
@@ -81,6 +81,7 @@ class WordleGame {
                 }
             }
 			block.className = 'row_block blockGold';
+		
         });
 
         document.getElementById('notification').innerHTML = notification;
