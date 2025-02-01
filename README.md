@@ -112,6 +112,6 @@ This project is a web-based Takhmenah game built using Node.js, Express, EJS, an
 
 ## Team Members
 - Dana Alsobay
-- Ghaida Aljumah
 - Khawlah Alhumaim
+- Ghaida Aljumah
 - Salma Alharbi
