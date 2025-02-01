@@ -45,6 +45,7 @@ app.set('view engine','ejs');
 app.use('/', require("./server/routes/auth")); //database route
 app.use('/', require("./server/routes/index"));
 app.use('/', require("./server/routes/dashboard"));
+
 // Route for handling 404 must be last route
 app.get('*', function(req,res){
     //res.status(404).send('404 Page not Found.')

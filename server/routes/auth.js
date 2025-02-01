@@ -6,9 +6,6 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 
-
-
-
 router.post('/auth/login', async (req, res) => {
     const { email, password, rememberMe } = req.body;
 
